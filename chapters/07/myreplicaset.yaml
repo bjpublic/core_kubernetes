@@ -1,0 +1,18 @@
+# myreplicaset.yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myreplicaset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: nginx-rs
+  template:
+    metadata:
+      labels:
+        run: nginx-rs
+    spec:
+      containers:
+      - name: nginx
+        image: nginx

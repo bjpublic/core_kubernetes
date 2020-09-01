@@ -1,0 +1,28 @@
+# pod-antiaffinity.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-antiaffinity
+spec:
+  selector:
+    matchLabels:
+      app: antiaffinity
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: antiaffinity
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - antiaffinity
+            topologyKey: "kubernetes.io/hostname"

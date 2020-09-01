@@ -1,0 +1,18 @@
+# node-affinity.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-affinity
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disktype
+            operator: In
+            values:
+            - ssd

@@ -1,0 +1,15 @@
+# allow-from-web.yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-from-web
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: app
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          run: web

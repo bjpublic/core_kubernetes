@@ -1,0 +1,27 @@
+# node-port.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-port
+spec:
+  type: NodePort     # type 추가
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30080  # 호스트(노드)의 포트 지정
+  selector:
+    run: node-port
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: node-port
+  name: node-port
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 80

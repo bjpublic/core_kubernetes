@@ -1,0 +1,24 @@
+# apache-tls-issuer.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # 앞서 생성한 발급자 지정
+    cert-manager.io/cluster-issuer: http-issuer
+  name: apache-tls-issuer
+spec:
+  rules:
+  # 10.0.1.1을 공인IP로 변경해 주세요.
+  - host: apache-issuer.10.0.1.1.sslip.io
+    http:
+      paths:
+      - backend:
+          serviceName: apache
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    # 10.0.1.1을 공인IP로 변경해 주세요.
+    - apache-issuer.10.0.1.1.sslip.io
+    secretName: apache-tls

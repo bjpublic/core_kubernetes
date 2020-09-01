@@ -1,0 +1,34 @@
+# domain-based-ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: apache-domain
+spec:
+  rules:
+    # apache 서브 도메인
+  - host: apache.10.0.1.1.sslip.io
+    http:
+      paths:
+      - backend:
+          serviceName: apache
+          servicePort: 80
+        path: /
+---  
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: nginx-domain
+spec:
+  rules:
+    # nginx 서브 도메인
+  - host: nginx.10.0.1.1.sslip.io
+    http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 80
+        path: /

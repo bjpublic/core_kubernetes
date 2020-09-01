@@ -1,0 +1,14 @@
+# myservice.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    hello: world
+  name: myservice
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: mynginx

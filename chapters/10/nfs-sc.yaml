@@ -1,0 +1,14 @@
+# nfs-sc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-sc
+spec:
+  # 기존 local-path에서 nfs로 변경
+  storageClassName: nfs
+  # accessModes를 ReadWriteMany로 변경
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi

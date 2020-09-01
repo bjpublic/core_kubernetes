@@ -1,0 +1,21 @@
+# jenkins.yaml
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: jenkins
+  namespace: default
+spec:
+  releaseName: jenkins
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: jenkins
+    version: 2.3.0
+  values:
+    master:
+      adminUser: "jenkins"
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "512Mi"
+      serviceType: LoadBalancer
+      servicePort: 8080

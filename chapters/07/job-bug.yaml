@@ -1,0 +1,15 @@
+# job-bug.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myjob-bug
+spec:
+  template:
+    spec:
+      containers:
+      - name: ml
+        image: $USERNAME/train
+        # int 타입이 아닌 string 타입 전달
+        args: ['bug-string', 'softmax', '0.5']
+      restartPolicy: Never
+  backoffLimit: 2

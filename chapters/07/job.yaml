@@ -1,0 +1,14 @@
+# job.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myjob
+spec:
+  template:
+    spec:
+      containers:
+      - name: ml
+        image: $USERNAME/train
+        args: ['3', 'softmax', '0.5']
+      restartPolicy: Never
+  backoffLimit: 2

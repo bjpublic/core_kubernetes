@@ -1,0 +1,26 @@
+# cluster-ip.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster-ip
+spec:
+  # type: ClusterIP  # 생략되어 있음
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: cluster-ip
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: cluster-ip
+  name: cluster-ip
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 80

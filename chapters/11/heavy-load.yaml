@@ -1,0 +1,11 @@
+# heavy-load.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: heavy-load
+spec:
+  containers: 
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do wget -q -O- http://heavy-cal; done"]

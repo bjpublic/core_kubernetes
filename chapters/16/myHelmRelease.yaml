@@ -1,0 +1,14 @@
+# myHelmRelease.yaml
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: rabbit
+  namespace: default
+spec:
+  releaseName: rabbitmq
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: rabbitmq
+    version: 3.3.6
+  values:
+    replicas: 1

@@ -1,0 +1,16 @@
+# use-pvc.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: use-pvc
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - mountPath: /test-volume
+      name: vol
+  volumes:
+  - name: vol
+    persistentVolumeClaim:
+      claimName: my-pvc
