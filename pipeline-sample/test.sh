@@ -1,0 +1,1 @@
+py.test /work/test.py

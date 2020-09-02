@@ -1,0 +1,9 @@
+# pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: skaffold-flask
+spec:
+  containers:
+  - image: <USERNAME>/flask   # 각 사용자 docker hub 계정을 입력합니다.
+    name: flask

@@ -1,0 +1,16 @@
+# pod-exceed.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-exceed
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    resources:
+      limits:
+        cpu: "700m"
+        memory: "700Mi"
+      requests:
+        cpu: "300m"
+        memory: "256Mi"

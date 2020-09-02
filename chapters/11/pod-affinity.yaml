@@ -1,0 +1,28 @@
+# pod-affinity.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-affinity
+spec:
+  selector:
+    matchLabels:
+      app: affinity
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: affinity
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - affinity
+            topologyKey: "kubernetes.io/hostname"

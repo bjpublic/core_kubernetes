@@ -1,0 +1,17 @@
+# my-nfs.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-nfs
+spec:
+  storageClassName: nfs
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /tmp
+    server: <NFS_SERVER_IP>

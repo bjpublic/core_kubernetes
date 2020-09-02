@@ -1,0 +1,11 @@
+# res-quota.yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: res-quota
+spec:
+  hard:
+    limits.cpu: 700m
+    limits.memory: 800Mi
+    requests.cpu: 500m
+    requests.memory: 700Mi

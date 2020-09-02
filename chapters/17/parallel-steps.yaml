@@ -1,0 +1,45 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: parallel-steps-
+  namespace: default
+spec:
+  entrypoint: hello-step
+  templates:
+
+  ###############
+  # template job
+  ###############
+  - name: whalesay
+    inputs:
+      parameters:
+      - name: message
+    container:
+      image: docker/whalesay
+      command: [cowsay]
+      args: ["{{inputs.parameters.message}}"]
+
+  ###############
+  # entrypoint
+  ###############
+  - name: hello-step
+    # 병렬 실행
+    steps:
+    - - name: hello1
+        template: whalesay
+        arguments:
+          parameters:
+          - name: message
+            value: "hello1"
+    - - name: hello2
+        template: whalesay
+        arguments:
+          parameters:
+          - name: message
+            value: "hello2"
+      - name: hello3        # 기존 double dash에서 single dash로 변경
+        template: whalesay
+        arguments:
+          parameters:
+          - name: message
+            value: "hello3"

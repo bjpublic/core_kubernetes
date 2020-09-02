@@ -1,0 +1,18 @@
+# allow-dmz.yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-dmz
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: web
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          zone: dmz
+    ports:
+    - protocol: TCP
+      port: 80

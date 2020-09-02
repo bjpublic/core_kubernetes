@@ -1,0 +1,16 @@
+# mynginx-ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: mynginx
+spec:
+  rules:
+  - host: 10.0.1.1.sslip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: mynginx
+          servicePort: 80

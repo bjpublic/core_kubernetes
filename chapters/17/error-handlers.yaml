@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: error-handlers-
+  namespace: default
+spec:
+  entrypoint: intentional-fail
+  # 에러 핸들러 작업 지정
+  onExit: error-handler
+
+  templates:
+  
+  ###############
+  # template job
+  ###############
+  - name: send-email
+    container:
+      image: alpine:latest
+      command: [sh, -c]
+      args: ["echo send e-mail: {{workflow.name}} {{workflow.status}}"]
+  
+  ###############
+  # 종료 핸들러
+  ###############
+  - name: error-handler
+    steps:
+    - - name: notify
+        template: send-email
+
+  ###############
+  # entrypoint
+  ###############
+  - name: intentional-fail
+    container:
+      image: alpine:latest
+      command: [sh, -c]
+      args: ["echo intentional failure; exit 1"]

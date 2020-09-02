@@ -1,0 +1,36 @@
+# use-nfs-sc.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: use-nfs-sc-master
+spec:
+  volumes:
+  - name: vol
+    persistentVolumeClaim:
+      claimName: nfs-sc
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - mountPath: "/usr/share/nginx/html"
+      name: vol
+  nodeSelector:
+    kubernetes.io/hostname: master
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: use-nfs-sc-worker
+spec:
+  volumes:
+  - name: vol
+    persistentVolumeClaim:
+      claimName: nfs-sc
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - mountPath: "/usr/share/nginx/html"
+      name: vol
+  nodeSelector:
+    kubernetes.io/hostname: worker
