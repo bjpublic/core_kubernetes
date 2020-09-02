@@ -7,4 +7,4 @@ def test_answer():
 
 def test_hello():
     ret = app.func(2)
-    assert app.hello() == "Hello World!: " + ret
+    assert app.hello() == "Hello World!: " + str(ret)
