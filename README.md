@@ -9,7 +9,7 @@
 ## 구매 링크
 
 - [yes24](http://www.yes24.com/Product/Goods/92426926?OzSrank=2)
-- [교보문고]()
+- [교보문고](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791165920180&orderClick=LAG&Kc=)
 - [알라딘](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=250937523)
 - [인터파크](http://book.interpark.com/product/BookDisplay.do?_method=detail&sc.shopNo=0000400000&sc.prdNo=338936080&sc.saNo=003002001&bid1=search&bid2=product&bid3=title&bid4=001)
 
