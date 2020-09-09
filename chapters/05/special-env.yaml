@@ -1,0 +1,18 @@
+# special-env.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: special-env
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: special-env
+    image: k8s.gcr.io/busybox
+    command: [ "printenv" ]
+    args: [ "special_env" ]
+    env:
+    - name: special_env
+      valueFrom:
+        configMapKeyRef:
+          name: special-config
+          key: special.power

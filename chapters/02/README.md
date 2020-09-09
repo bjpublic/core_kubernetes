@@ -1,6 +1,6 @@
 # 2. 쿠버네티스 소개
 
-## 2.1 쿠버네티스란?
+## 쿠버네티스란?
 
 - 쿠버네티스 공식 웹사이트 : [https://kubernetes.io/](https://kubernetes.io/)
 - 쿠버네티스  깃허브 : [https://github.com/kubernetes/kubernetes](https://github.com/kubernetes/kubernetes)

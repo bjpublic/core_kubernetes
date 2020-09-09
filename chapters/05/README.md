@@ -623,7 +623,9 @@ kubectl get configmap game-config -o yaml  # 축약하여 cm
 ```
 
 ```bash
-kubectl create configmap special-config --from-literal=special.power=10 --from-literal=special.strength=20
+kubectl create configmap special-config \
+            --from-literal=special.power=10 \
+            --from-literal=special.strength=20
 # configmap/special-config created
 ```
 
@@ -871,7 +873,7 @@ kubectl get secret user-info-from-file -oyaml
 
 ### 5.11.2 Secret 활용
 
-#### Volume 연결
+#### 볼륨 연결
 
 ```yaml
 # secret-volume.yaml

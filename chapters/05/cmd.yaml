@@ -1,0 +1,14 @@
+# cmd.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cmd
+spec:
+  restartPolicy: OnFailure
+  containers: 
+  - name: nginx
+    image: nginx
+    # 실행명령
+    command: ["/bin/echo"]
+    # 파라미터
+    args: ["hello"]

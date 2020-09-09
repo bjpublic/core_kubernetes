@@ -184,7 +184,7 @@ REGION=ap-northeast-2
 
 helm install autoscaler stable/cluster-autoscaler \
   --namespace kube-system \
-  --set autoDiscovery.clusterName=$NAME,awsRegion=$REGION,sslCertPath=/etc/kubernetes/pki/ca.crt
+  --set autoDiscovery.clusterName=$NAME,awsRegion=$REGION,sslCertPath=/etc/kubernetes/pki/ca.crt \
   --version 7.3.4
 ```
 
@@ -199,7 +199,7 @@ gcloud container clusters create $CLUSTER_NAME \
     --min-nodes=1 \
     --num-nodes=2 \
     --max-nodes=4 \
-    --node-locations=$CLUSTER_NAME \
+    --node-locations=$REGION \
     --machine-type=n1-highcpu-8
 ```
 
@@ -236,6 +236,7 @@ watch kubectl get node
 kubectl delete hpa heavy-cal
 kubectl delete deploy heavy-cal
 kubectl delete svc heavy-cal
+helm delete metrics-server -nctrl
 ```
 
 ## 11.3 `Taint & Toleration`
@@ -355,10 +356,9 @@ kubectl get pod -o wide
 ```
 
 ```bash
-# project taint 제거
 kubectl taint node worker project-
-# badsector taint 제거
 kubectl taint node worker badsector-
+kubectl delete pod --all
 ```
 
 ## 11.4 `Affinity & AntiAffinity`

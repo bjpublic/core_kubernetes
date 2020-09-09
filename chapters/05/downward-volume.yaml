@@ -1,0 +1,25 @@
+# downward-volume.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: downward-volume
+  labels:
+    zone: ap-north-east
+    cluster: cluster1
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: downward
+    image: k8s.gcr.io/busybox
+    command: ["sh", "-c"]
+    args: ["cat /etc/podinfo/labels"]
+    volumeMounts:
+    - name: podinfo
+      mountPath: /etc/podinfo
+  volumes:
+  - name: podinfo
+    downwardAPI:
+      items:
+      - path: "labels"
+        fieldRef:
+          fieldPath: metadata.labels

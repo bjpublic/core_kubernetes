@@ -1,0 +1,14 @@
+# readiness-cmd.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: readiness-cmd
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+    readinessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/ready

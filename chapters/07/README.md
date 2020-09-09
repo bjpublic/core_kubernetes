@@ -189,13 +189,6 @@ kubectl get pod
 # mydeploy-6fbf-ncqd2   0/1     ImagePullBackOff  0         48s
 ```
 
-```bash
-# 배포 히스토리 확인
-kubectl rollout history deployment <NAME>
-
-# 이전 버전으로 롤백 명령
-kubectl rollout undo deployment <NAME>
-```
 
 ```bash
 # 지금까지의 배포 히스토리를 확인합니다.
@@ -415,7 +408,7 @@ kubectl get pod
 ```bash
 kubectl delete sts mysts
 kubectl delete svc mysts
-kubectl delete pvc vol-mysts-0 vol-mysts-1 vol-mysts-2
+kubectl delete pvc --all
 ```
 
 ## 7.5 DaemonSet

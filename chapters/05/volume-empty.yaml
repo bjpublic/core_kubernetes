@@ -1,0 +1,15 @@
+# volume-empty.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-empty
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - mountPath: /container-volume
+      name: my-volume
+  volumes:
+  - name: my-volume
+    emptyDir: {}

@@ -111,9 +111,9 @@ def main {
 Operator를 쿠버네티스 API를 이용하여 처음부터 개발하는 것도 가능하지만 Operator를 편리하게 만들 수 있게 제공하는 툴들이 이미 존재합니다.
 
 - `kubebuilder`: [https://book.kubebuilder.io](https://book.kubebuilder.io)
-- `Operator Framework`: 
-- `Metacontroller`: 
-- `KUDO`: 
+- `Operator Framework`: [https://coreos.com/operators](https://coreos.com/operators)
+- `Metacontroller`: [https://metacontroller.app](https://metacontroller.app)
+- `KUDO`: [https://kudo.dev](https://kudo.dev/)
 
 ## 16.3 유용한 Operators
 

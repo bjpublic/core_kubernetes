@@ -1,0 +1,9 @@
+# user-info-stringdata.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: user-info-stringdata
+type: Opaque
+stringData:
+  username: admin
+  password: password123

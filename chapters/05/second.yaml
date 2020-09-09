@@ -1,0 +1,13 @@
+# second.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: second
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+  - name: curl
+    image: curlimages/curl
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do sleep 5; curl -s localhost; done"]

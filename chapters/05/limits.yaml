@@ -1,0 +1,16 @@
+# limits.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: limits
+spec:
+  restartPolicy: OnFailure
+  containers: 
+  - name: mynginx
+    image: python:3.7
+    command: [ "python" ]
+    args: [ "-c", "arr = []\nwhile True: arr.append(range(1000))" ]
+    resources:
+      limits:
+        cpu: "500m"
+        memory: "1Gi"

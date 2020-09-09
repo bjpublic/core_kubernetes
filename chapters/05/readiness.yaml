@@ -1,0 +1,13 @@
+# readiness.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: readiness
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+    readinessProbe:
+      httpGet:
+        path: /ready
+        port: 80

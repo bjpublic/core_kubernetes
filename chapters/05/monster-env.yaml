@@ -1,0 +1,15 @@
+# monster-env.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: monster-env
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: monster-env
+    image: k8s.gcr.io/busybox
+    command: [ "printenv" ]
+    # env 대신에 envFrom 사용
+    envFrom:
+    - configMapRef:
+        name: monster-config

@@ -497,7 +497,7 @@ curl localhost:6000/hello.txt
 
 ```Dockerfile
 # Dockerfile
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 ENTRYPOINT ["echo"]
 ```
@@ -524,7 +524,7 @@ docker run --entrypoint=cat lets-echo /etc/passwd
 
 ```Dockerfile
 # Dockerfile
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 # Ubuntu 유저 생성
 RUN adduser --disabled-password --gecos "" ubuntu
@@ -538,20 +538,24 @@ USER ubuntu
 docker build . -t my-user
 
 # ubuntu라는 유저로 컨테이너 실행
-docker run my-user whoami
-# ubuntu
+docker run -it my-user bash
+ubuntu@b09ce82d4a77:/$
 
-# root 유저가 아니기에 권한 에러가 발생합니다.
-docker run my-user sh -c "apt update"
+ubuntu@b09ce82d4a77:/$ apt update
 # Reading package lists... Done
-# E: List directory /var/lib/apt/lists/partial is missing. 
+# E: List directory /var/lib/apt/lists/partial is missing.
 # - Acquire (13: Permission denied)
 
+ubuntu@b09ce82d4a77:/$ exit
+
 # 강제로 root 유저 사용
-docker run --user root my-user sh -c "apt update"
-# Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease 
+docker run --user root -it my-user bash
+root@0ac2522215e8:/$ apt update
+# Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease
 # Get:2 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
 # ...
+
+root@0ac2522215e8:/$ exit
 ```
 
 ### Clean up

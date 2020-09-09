@@ -148,7 +148,7 @@ spec:
     command: ["cat"]
     env:
     - name: PROJECT_NAME
-      value: jenkins-pipeline-sample
+      value: core_kubernetes
     volumeMounts:
     - mountPath: /var/run/docker.sock
       name: docker-socket

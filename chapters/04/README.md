@@ -352,13 +352,13 @@ cat << EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mynginx-here
+  name: cat-nginx
 spec:
   containers:
   - image: nginx
-    name: mynginx
+    name: cat-nginx
 EOF
-# pod/mynginx-here created
+# pod/cat-nginx created
 ```
 
 ### 4.2.5 리소스 특정 정보 추출
@@ -384,7 +384,7 @@ kubectl get node master -o yaml
 ```
 
 ```bash
-kubectl get node -o wide
+kubectl get node master -o wide
 # NAME     STATUS   ROLES    AGE   VERSION        INTERNAL-IP     ...
 # master   Ready    master   27m   v1.18.6+k3s1   10.0.1.1        ...
 ```

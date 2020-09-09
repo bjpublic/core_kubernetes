@@ -1,0 +1,28 @@
+# init-container.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-container
+spec:
+  restartPolicy: OnFailure
+  containers: 
+  - name: busybox
+    image: k8s.gcr.io/busybox
+    command: [ "ls" ]
+    args: [ "/tmp/moby" ]
+    volumeMounts:
+    - name: workdir
+      mountPath: /tmp
+  initContainers:
+  - name: git
+    image: alpine/git
+    command: ["sh"]
+    args:
+    - "-c"
+    - "git clone https://github.com/moby/moby.git /tmp/moby"
+    volumeMounts:
+    - name: workdir
+      mountPath: "/tmp"
+  volumes:
+  - name: workdir
+    emptyDir: {}

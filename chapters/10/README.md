@@ -456,9 +456,8 @@ kubectl exec use-nfs-sc-worker -- curl -s localhost
 ### Clean up
 
 ```bash
-kubectl delete pod user-nfs-sc-master
-kubectl delete pod user-nfs-sc-worker
-kubectl delete pvc nfs-sc
+kubectl delete pod --all
+kubectl delete pvc nfs-sc my-pvc-sc
 ```
 
 ## 10.4 쿠버네티스 스토리지 활용
@@ -481,8 +480,8 @@ secretKey: "mysecret"
   storageClass: "nfs"
   # ReadWriteMany로 변경
   accessMode: "ReadWriteMany"
-  # 2Gi로 변경
-  size: 2Gi    # 기존 500Gi
+  # 1Gi로 변경
+  size: 1Gi    # 기존 500Gi
 
 # 약 149번째 줄에서 ingress 설정
 ingress:
