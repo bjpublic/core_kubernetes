@@ -1,0 +1,8 @@
+# external.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: google-svc  # 별칭
+spec:
+  type: ExternalName
+  externalName: google.com  # 외부 DNS

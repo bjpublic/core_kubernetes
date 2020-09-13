@@ -1,0 +1,9 @@
+# deny-all.yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: deny-all
+  namespace: default
+spec:
+  podSelector: {}
+  ingress: []

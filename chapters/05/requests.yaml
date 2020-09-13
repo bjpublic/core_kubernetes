@@ -1,0 +1,13 @@
+# requests.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: requests
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "500Mi"

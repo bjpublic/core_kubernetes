@@ -1,0 +1,16 @@
+# badsector.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badsector
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "project"
+    value: "A"
+    operator: "Equal"
+    effect: "NoSchedule"
+  - key: "badsector"
+    operator: "Exists"

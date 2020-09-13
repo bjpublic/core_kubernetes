@@ -1,0 +1,25 @@
+# argocd-ingress.yaml
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: argocd
+  namespace: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: http-issuer
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+spec:
+  rules:
+  - host: argocd.10.0.1.1.sslip.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: argocd-server
+          servicePort: https
+  tls:
+  - hosts:
+    - argocd.10.0.1.1.sslip.io
+    secretName: argocd-tls

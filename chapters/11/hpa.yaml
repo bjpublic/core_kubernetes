@@ -1,0 +1,13 @@
+# hpa.yaml
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: heavy-cal
+spec:
+  maxReplicas: 50
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: heavy-cal
+  targetCPUUtilizationPercentage: 50

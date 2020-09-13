@@ -1,0 +1,12 @@
+# mynginx.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: mynginx
+  name: mynginx
+spec:
+  containers:
+  - image: nginx
+    name: mynginx
+  restartPolicy: Never

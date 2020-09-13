@@ -1,0 +1,9 @@
+# mynginx.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mynginx
+spec:
+  containers: 
+  - name: mynginx
+    image: nginx

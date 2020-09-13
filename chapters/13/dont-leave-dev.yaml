@@ -1,0 +1,11 @@
+# dont-leave-dev.yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: dont-leave-dev
+  namespace: dev
+spec:
+  podSelector: {}
+  egress:
+  - to:
+    - podSelector: {}

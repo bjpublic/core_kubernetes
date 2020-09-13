@@ -1,0 +1,13 @@
+# liveness.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+    livenessProbe:
+      httpGet:
+        path: /live
+        port: 80

@@ -1,0 +1,10 @@
+# monster-config.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: monster-config
+  namespace: default
+data:
+  monsterType: fire
+  monsterNum: "5"
+  monsterLife: "3"

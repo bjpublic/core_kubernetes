@@ -1,0 +1,18 @@
+# game-volume.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: game-volume
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: game-volume
+    image: k8s.gcr.io/busybox
+    command: [ "/bin/sh", "-c", "cat /etc/config/game.properties" ]
+    volumeMounts:
+    - name: game-volume
+      mountPath: /etc/config
+  volumes:
+  - name: game-volume
+    configMap:
+      name: game-config

@@ -1,0 +1,35 @@
+# heavy-cal.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heavy-cal
+spec:
+  selector:
+    matchLabels:
+      run: heavy-cal
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: heavy-cal
+    spec:
+      containers:
+      - name: heavy-cal
+        image: k8s.gcr.io/hpa-example
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 300m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: heavy-cal
+spec:
+  ports:
+  - port: 80
+  selector:
+    run: heavy-cal

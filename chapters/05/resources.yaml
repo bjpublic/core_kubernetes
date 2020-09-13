@@ -1,0 +1,16 @@
+# resources.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resources
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "500Mi"
+      limits:
+        cpu: "500m"
+        memory: "1Gi"

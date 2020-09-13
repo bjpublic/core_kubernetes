@@ -1,0 +1,18 @@
+# single-job.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-
+  namespace: default
+spec:
+  entrypoint: whalesay
+  templates:
+  - name: whalesay
+    container:
+      image: docker/whalesay
+      command: [cowsay]
+      args: ["hello world"]
+      resources:
+        limits:
+          memory: 32Mi
+          cpu: 100m

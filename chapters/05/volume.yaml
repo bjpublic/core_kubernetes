@@ -1,0 +1,20 @@
+# volume.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+
+    # 컨테이너 내부의 연결 위치 지정
+    volumeMounts:
+    - mountPath: /container-volume
+      name: my-volume
+  
+  # host 서버의 연결 위치 지정
+  volumes:
+  - name: my-volume
+    hostPath:
+      path: /home

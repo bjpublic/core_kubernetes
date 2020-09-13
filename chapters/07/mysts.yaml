@@ -1,0 +1,43 @@
+# mysts.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysts
+spec:
+  serviceName: mysts
+  replicas: 3
+  selector:
+    matchLabels:
+      run: nginx
+  template:
+    metadata:
+      labels:
+        run: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        volumeMounts:
+        - name: vol
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: vol
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysts
+spec:
+  clusterIP: None
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: nginx

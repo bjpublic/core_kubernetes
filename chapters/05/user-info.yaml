@@ -1,0 +1,9 @@
+# user-info.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: user-info
+type: Opaque
+data:
+  username: YWRtaW4=            # admin
+  password: cGFzc3dvcmQxMjM=    # password123

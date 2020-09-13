@@ -1,0 +1,12 @@
+# node-selector.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-selector
+spec:
+  containers: 
+  - name: nginx
+    image: nginx
+  # 특정 노드 라벨 선택
+  nodeSelector:
+    disktype: ssd
