@@ -290,16 +290,47 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: volume-empty
+  labels:
+    name: volume-empty
 spec:
-  containers: 
+  containers:
   - name: nginx
     image: nginx
+    volumeMounts: # 컨테이너 내부의 연결 위치 지정
+    - name: shared-storage
+      mountPath: /container-volume
+  - name: redis
+    image: redis
     volumeMounts:
-    - mountPath: /container-volume
-      name: my-volume
-  volumes:
-  - name: my-volume
+    - name: shared-storage
+      mountPath: /container-volume
+  volumes: 
+  - name: shared-storage
     emptyDir: {}
+```
+
+```bash
+# pod 내부의 컨테이너간 공유 디렉토리 pod 생성
+$ kubectl apply -f volume-empty.yaml
+# pod/volume-empty created
+
+# pod 내부의 각각의 컨테이너에 접근하기
+$ kubectl exec -it volume-empty --container nginx -- bash
+# root@volume-empty:/$ cd /container-volume/
+# root@volume-empty:/container-volume$ touch volume.txt
+# root@volume-empty:/container-volume# ls -al
+# total 8
+# drwxrwxrwx 2 root root 4096 Oct 22 09:59 .
+# drwxr-xr-x 1 root root 4096 Oct 22 09:55 ..
+# -rw-r--r-- 1 root root    0 Oct 22 09:59 volume.txt
+
+# 다른 컨테이너에서 내용 확인
+$ kubectl exec -it volume-empty --container redis -- bash
+# root@volume-empty:/data# ls -al /container-volume/
+# total 8
+# drwxrwxrwx 2 root root 4096 Oct 22 09:59 .
+# drwxr-xr-x 1 root root 4096 Oct 22 09:55 ..
+# -rw-r--r-- 1 root root    0 Oct 22 09:59 volume.txt
 ```
 
 ## 5.6 리소스 관리
